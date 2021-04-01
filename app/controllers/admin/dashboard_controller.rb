@@ -1,11 +1,6 @@
-class Admin::DashboardController < ApplicationController
-  # @admin_name = ENV['ADMIN_NAME'].to_s
-  # @admin_password = ENV['ADMIN_PASSWORD'].to_s
+require_relative './admin_authentication_controller.rb'
 
-  # http_basic_authenticate_with name: ENV['ADMIN_NAME'].to_s, password: ENV['ADMIN_PASSWORD'].to_s
-
-  http_basic_authenticate_with name: ENV['ADMIN_NAME'], password: ENV['ADMIN_PASSWORD']
-
+class Admin::DashboardController < AdminAuthentication
   def show
     @products = Product.all
     @categories = Category.all

@@ -1,7 +1,6 @@
-class Admin::CategoriesController < ApplicationController
+require_relative './admin_authentication_controller.rb'
 
-  http_basic_authenticate_with name: ENV['ADMIN_NAME'], password: ENV['ADMIN_PASSWORD']
-
+class Admin::CategoriesController < AdminAuthentication
   def index
     @categories = Category.order(id: :desc).all
   end
@@ -19,17 +18,12 @@ class Admin::CategoriesController < ApplicationController
       render :new
     end
   end
-  
+
   private
 
-  def product_params
+  def category_params
     params.require(:category).permit(
-      # :name,
-      # :description,
-      # :category_id,
-      # :quantity,
-      # :image,
-      # :price
+      :name
     )
   end
 
