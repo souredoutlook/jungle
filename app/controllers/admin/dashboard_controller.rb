@@ -1,6 +1,7 @@
 class Admin::DashboardController < Admin::BaseController
   def show
-    @products = Product.all
-    @categories = Category.all
+    @products = Product.count
+    @categories = Category.count
+    @users = User.count
   end
 end
