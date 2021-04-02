@@ -1,6 +1,4 @@
-require_relative './admin_authentication_controller.rb'
-
-class Admin::CategoriesController < AdminAuthentication
+class Admin::CategoriesController < Admin::BaseController
   def index
     @categories = Category.order(id: :desc).all
   end

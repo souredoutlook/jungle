@@ -1,6 +1,4 @@
-require_relative './admin_authentication_controller.rb'
-
-class Admin::ProductsController < AdminAuthentication
+class Admin::ProductsController < Admin::BaseController
   def index
     @products = Product.order(id: :desc).all
   end
