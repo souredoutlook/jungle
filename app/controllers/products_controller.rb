@@ -8,4 +8,11 @@ class ProductsController < ApplicationController
     @product = Product.find params[:id]
   end
 
+  private
+
+  def is_sold_out?(product) 
+    product.quantity < 1
+  end
+  helper_method :is_sold_out?
+  
 end
