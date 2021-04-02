@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
       redirect_to @prev_url
     else
     # If user's login doesn't work, send them back to the login form.
-      redirect_to '/login'
+      redirect_to '/login', alert: "Incorrect email or password"
     end
   end
 

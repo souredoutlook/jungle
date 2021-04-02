@@ -1,5 +1,11 @@
 <h1>Log in to Jungle</h1>
 
+<% if alert %>
+  <div class="alert alert-danger" role="alert">
+    <%= alert %>
+  </div>
+<% end %>
+
 <div class="row">
     <div class="col-sm-6 col-sm-offset-1">
       <%= form_tag '/sessions' do %>
@@ -18,3 +24,4 @@
       <% end %>
   </div>
 </div>
+
