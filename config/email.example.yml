@@ -1,0 +1,15 @@
+# code borrowed from https://stackoverflow.com/a/4377819
+development:
+  :address: smtp.gmail.com
+  :port: 587
+  :authentication: plain
+  :user_name: xxx@gmail.com  
+  :password: yyy
+  :enable_starttls_auto: true
+production:
+  :address: smtp.gmail.com
+  :port: 587
+  :authentication: plain
+  :user_name: xxx@gmail.com  
+  :password: yyy
+  :enable_starttls_auto: true
