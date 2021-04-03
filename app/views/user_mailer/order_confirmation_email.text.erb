@@ -1,0 +1,6 @@
+Thank you for placing your order with Jungle!
+===============================================
+<% @order.line_items.each do |item| %>
+Product Name: <%= item.product.name %>, Unit Price: <%= humanized_money_with_symbol item.product.price %>, Quantity: <%= item.quantity %>, Price: <%= humanized_money_with_symbol item.product.price * item.quantity%>
+<% end %>
+TOTAL: <%= humanized_money_with_symbol @order.total %>
