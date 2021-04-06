@@ -62,6 +62,15 @@ RSpec.describe User, type: :model do
       expect(invalid_user.errors.full_messages.second).to eql("Password confirmation can't be blank")
       expect(invalid_user.errors.full_messages.third).to eql("Password confirmation doesn't match Password")
     end
+
+       # validates :password, length: {minimum: 8}
+       it "fail if password is shorter than 8 characters" do
+        invalid_user = User.create(first_name: "First", last_name: "Last", email: "what@amess.com", password: "passwd", password_confirmation: "passwd")
+        
+        # puts invalid_user.errors.full_messages.inspect
+        
+        expect(invalid_user.errors.full_messages.first).to eql("Password is too short (minimum is 8 characters)")
+      end
     
     # validates :password, confirmation: true
     it "succeed if all fields present and correct" do
