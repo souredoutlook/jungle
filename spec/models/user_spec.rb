@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
- 
+  
+  before(:all) do
+    #create valid_user to test authenticatie_with_credentials and uniqueness validations against
+    @valid_user = User.create!(first_name: "First", last_name: "Last", email: "test@test.com", password: "password", password_confirmation: "password")
+  end
+  
   describe 'Validations' do
-    before(:all) do
-      #create valid_user1 to test uniqueness validations against
-      @valid_user = User.create!(first_name: "First", last_name: "Last", email: "test@test.com", password: "password", password_confirmation: "password")
-    end
     
     # validates :first_name, presence: true
     it "fail if first name is blank" do
@@ -79,10 +80,38 @@ RSpec.describe User, type: :model do
       expect(test_user.id).not_to be_nil
     end
 
-    after(:all) do
-      @valid_user.destroy
+  end
+  
+  
+  describe ".authenticate_with_credentials" do
+    it "returns nil if email is incorrect" do
+      user = User.authenticate_with_credentials("notanemail@fake.com", "passwordd")
+      expect(user).to be_nil
+    end
+
+    it "returns nil if password is incorrect" do
+      user = User.authenticate_with_credentials("test@test.com", "passwd")
+      expect(user).to be_nil
+    end
+    
+    it "succeeds if all fields are present and correct" do
+      user = User.authenticate_with_credentials("test@test.com", "password")
+      expect(user).not_to be_nil
+    end
+
+    it "succeeds if password is correct and email is cased improperly" do
+      user = User.authenticate_with_credentials("TEST@TEST.COM", "password")
+      expect(user).not_to be_nil
+    end
+
+    it "succeeds if password is correct and email includes extra leading and trailing whitespce" do
+      user = User.authenticate_with_credentials("  TEST@TEST.COM  ", "password")
+      expect(user).not_to be_nil
     end
   end
-
-
+  
+  after(:all) do
+    @valid_user.destroy
+  
+  end
 end
