@@ -5,11 +5,11 @@ Tested with Rspec, Capybara, phantomJS.
 
 
 ## Features
-* Add products to your cart, checkout with stripe.
-  * If enabled, receive a confirmation email
-* Create an account and login. 
+* Add products to your cart, checkout with Stripe.
+  * If enabled, receive a confirmation email.
+* Create an account, and log in. 
 * Administrative features like adding categories, adding and deleting products.
-* Validations with alerts on creation of:
+* Validations with alerts on creation of new:
   - users
   - sessions
   - products
